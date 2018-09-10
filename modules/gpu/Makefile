@@ -62,6 +62,8 @@ GPU_BUILD_DIR = mali450/kernel_mode/driver/src/devicedrv/mali
 UMP_BUILD_DIR = mali450/kernel_mode/driver/src/devicedrv/ump
 UMPLOCK_BUILD_DIR = mali450/kernel_mode/driver/src/devicedrv/umplock
 GPU_KO_NAME   = $(GPU_BUILD_DIR)/mali.ko
+UMP_KO_NAME   = $(UMP_BUILD_DIR)/ump.ko
+UMPLOCK_KO_NAME   = $(UMPLOCK_BUILD_DIR)/umplock.ko
 else ifeq ($(GPU_TYPE), "sgx544")
 GPU_BUILD_DIR = sgx544/$(WINDOW_SYSTEM_TYPE)/kernel_mode/eurasia_km/eurasiacon/build/linux2/sunxi_android
 GPU_KO_NAME   = sgx544/$(WINDOW_SYSTEM_TYPE)/kernel_mode/eurasia_km/eurasiacon/binary2_sunxi_$(WINDOW_SYSTEM_TYPE)_$(GPU_BUILD_TYPE)/target/pvrsrvkm.ko
@@ -85,6 +87,8 @@ build:
 
 install:
 	@cp -uv $(GPU_KO_NAME) $(LICHEE_MOD_DIR);
+	@cp -uv $(UMP_KO_NAME) $(LICHEE_MOD_DIR);
+	@cp -uv $(UMPLOCK_KO_NAME) $(LICHEE_MOD_DIR);
 
 clean:
 	$(MAKE) -C $(GPU_BUILD_DIR) clean
